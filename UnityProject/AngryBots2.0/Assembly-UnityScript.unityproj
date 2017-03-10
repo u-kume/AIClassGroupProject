@@ -67,7 +67,20 @@
      <Compile Include="Assets\Scripts\AIAgent\AIAgentFire.js" />
      <Compile Include="Assets\Scripts\AIAgent\AIAgentMovement.js" />
      <Compile Include="Assets\Scripts\AIAgent\AIAgentTryNav.js" />
+     <Compile Include="Assets\Scripts\AIAgent\AgentCollider.js" />
      <Compile Include="Assets\Scripts\AIAgent\AiAgentTargetList.js" />
+     <Compile Include="Assets\Scripts\AIAgent\BehaviorScripts\Agent.js" />
+     <Compile Include="Assets\Scripts\AIAgent\BehaviorScripts\AgentBehaviour.js" />
+     <Compile Include="Assets\Scripts\AIAgent\BehaviorScripts\Align.js" />
+     <Compile Include="Assets\Scripts\AIAgent\BehaviorScripts\Arrive.js" />
+     <Compile Include="Assets\Scripts\AIAgent\BehaviorScripts\Evade.js" />
+     <Compile Include="Assets\Scripts\AIAgent\BehaviorScripts\Face.js" />
+     <Compile Include="Assets\Scripts\AIAgent\BehaviorScripts\Flee.js" />
+     <Compile Include="Assets\Scripts\AIAgent\BehaviorScripts\Leave.js" />
+     <Compile Include="Assets\Scripts\AIAgent\BehaviorScripts\Pursue.js" />
+     <Compile Include="Assets\Scripts\AIAgent\BehaviorScripts\Seek.js" />
+     <Compile Include="Assets\Scripts\AIAgent\BehaviorScripts\Steering.js" />
+     <Compile Include="Assets\Scripts\AIAgent\ColliderTester.js" />
      <Compile Include="Assets\Scripts\Animation\FanRotate.js" />
      <Compile Include="Assets\Scripts\Animation\FootstepHandler.js" />
      <Compile Include="Assets\Scripts\Animation\MechAnimation.js" />
@@ -176,17 +189,11 @@
      <None Include="Assets\Shaders\BackgroundAndCharacters\SuperSimpleSelfIllumination.shader" />
      <None Include="Assets\Shaders\Fx\ParticleBlend.shader" />
      <None Include="Assets\Shaders\Fx\InterlacePatternAdditive.shader" />
- <Reference Include="UnityEngine.Advertisements">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
- </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
- </Reference>
- <Reference Include="UnityEngine.Analytics">
- <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>/Applications/Unity/Unity.app/Contents/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

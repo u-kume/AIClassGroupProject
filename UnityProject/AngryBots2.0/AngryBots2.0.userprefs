@@ -1,12 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AI/AI.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AIAgent/AgentCollider.js">
     <Files>
-      <File FileName="Assets/Scripts/AIAgent/AIAgentTryNav.js" Line="49" Column="24" />
-      <File FileName="Assets/Scripts/AIAgent/AiAgentTargetList.js" Line="52" Column="2" />
-      <File FileName="Assets/Scripts/Modules/TriggerOnTag.js" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AI/MechAttackMoveController.js" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AI/AI.js" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIAgent/AIAgentTryNav.js" Line="48" Column="6" />
+      <File FileName="Assets/Scripts/AIAgent/AgentCollider.js" Line="4" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

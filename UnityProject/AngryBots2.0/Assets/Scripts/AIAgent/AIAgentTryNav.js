@@ -32,7 +32,7 @@ function Update () {
 	if(stopped == true){
 		//Debug.Log (Time.time - timeSinceStop + " hererere");
 		if(Time.time - timeSinceStop > 3) {
-			Debug.Log("making new selection from stop");
+			//Debug.Log("making new selection from stop");
 			targetScript.setCurrent();
 			navmeshAgent.Resume();
 			setNewDestination();
@@ -40,12 +40,12 @@ function Update () {
 		}
 	} else
 		if(Vector3.Distance(transform.position, targetScript.closestTarget) < 5 && stopped == false) {
-			Debug.Log("Stopping");
+			//Debug.Log("Stopping");
 			navmeshAgent.Stop(true);
 			stopped = true;
 			timeSinceStop = Time.time;
 		} else {
-			Debug.Log ("in Else");
+			//Debug.Log ("in Else");
 			setNewDestination();
 			}
 			
@@ -57,6 +57,14 @@ function setNewDestination() {
 		navmeshAgent.SetDestination(targetScript.closestTarget);
 	else 
 		navmeshAgent.SetDestination(transform.position);
+}
+
+function OnDisable() {
+	navmeshAgent.Stop();
+}
+
+function OnEnable() {
+	navmeshAgent.Resume();
 }
 
 
