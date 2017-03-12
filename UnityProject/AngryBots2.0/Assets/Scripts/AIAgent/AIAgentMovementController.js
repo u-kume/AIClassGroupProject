@@ -1,5 +1,10 @@
 ﻿#pragma strict
 
+
+/*
+ * This class is used to move the agent in the physical 3D world depending on the movement from the AIAgentMovement
+ *	class. This class will also rotate the agent depending on the position of the cursor in the AIAgentMovement class
+ */
 @script RequireComponent (Rigidbody)
 public class AIAgentMovementController extends AIAgentMovementMotor {
 
@@ -7,7 +12,12 @@ public class AIAgentMovementController extends AIAgentMovementMotor {
 	public var walkingSpeed : float = 5.0;
 	public var walkingSnappyness : float = 50;
 	public var turningSmoothing : float = 0.3;
-	
+
+
+	/*
+	 * This update is done more often than the regular update, sometimes more then once a frame
+	 * 	It is used to move and rotate the Agent in the physical 3D world of the game.
+	 */
 	function FixedUpdate () {
 		// Handle the movement of the character
 		var targetVelocity : Vector3 = movementDirection * walkingSpeed;
@@ -15,12 +25,12 @@ public class AIAgentMovementController extends AIAgentMovementMotor {
 		if (GetComponent.<Rigidbody>().useGravity)
 			deltaVelocity.y = 0;
 		GetComponent.<Rigidbody>().AddForce (deltaVelocity * walkingSnappyness, ForceMode.Acceleration);
-		
+
 		// Setup player to face facingDirection, or if that is zero, then the movementDirection
 		var faceDir : Vector3 = facingDirection;
 		if (faceDir == Vector3.zero)
 			faceDir = movementDirection;
-		
+
 		// Make the character rotate towards the target rotation
 		if (faceDir == Vector3.zero) {
 			GetComponent.<Rigidbody>().angularVelocity = Vector3.zero;
@@ -30,16 +40,16 @@ public class AIAgentMovementController extends AIAgentMovementMotor {
 			GetComponent.<Rigidbody>().angularVelocity = (Vector3.up * rotationAngle * turningSmoothing);
 		}
 	}
-	
+
 	// The angle between dirA and dirB around axis
 	static function AngleAroundAxis (dirA : Vector3, dirB : Vector3, axis : Vector3) {
 	    // Project A and B onto the plane orthogonal target axis
 	    dirA = dirA - Vector3.Project (dirA, axis);
 	    dirB = dirB - Vector3.Project (dirB, axis);
-	   
+
 	    // Find (positive) angle between A and B
 	    var angle : float = Vector3.Angle (dirA, dirB);
-	   
+
 	    // Return angle multiplied with 1 or -1
 	    return angle * (Vector3.Dot (axis, Vector3.Cross (dirA, dirB)) < 0 ? -1 : 1);
 	}
