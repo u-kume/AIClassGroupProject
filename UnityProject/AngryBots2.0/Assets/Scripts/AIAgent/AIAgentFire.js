@@ -1,9 +1,7 @@
 ﻿#pragma strict
 
-function Start () {
+public class AIAgentFire extends AIAgent {
 
-}
-
-function Update () {
-
+	public var target : Transform;
+	//public var 
 }

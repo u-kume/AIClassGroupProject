@@ -1,66 +1,96 @@
 ﻿#pragma strict
 
-public var enemyTriggerCollider : Collider;
+
+public class AgentCollider extends AIAgent{
 
 
-private var enemyTriggered : GameObject = null;
-
-private var navigationAgentEnables : boolean = true;
-
-private var enemyTriggerColliderList : System.Collections.Generic.List.<GameObject> = new System.Collections.Generic.List.<GameObject> ();
-private var listSize : int = 0;
+	public var enemyTriggerCollider : Collider;
 
 
-function OnTriggerEnter (other : Collider) {
-	if(other.gameObject.tag == "Enemy" && canSeeEnemy(other) == true) {
-			enemyTriggerColliderList.Add(other.gameObject);
-			listSize++;
-			//enemyTriggered = other.gameObject;
-			Debug.Log("Enemy has entered trigger " + other.gameObject.name + "   " + other.gameObject.GetInstanceID());
-			gameObject.GetComponent.<AIAgentTryNav>().enabled = false;
-			navigationAgentEnables = false;
+	
+	public var navigationAgentEnables : boolean = true;
+
+	public  var enemyTriggerColliderList : System.Collections.Generic.List.<GameObject> = new System.Collections.Generic.List.<GameObject> ();
+	public var listSize : int = 0;
+
+	public var navMeshAgent : AIAgentTryNav;
+	
+	function Awake() {
+		navMeshAgent = gameObject.GetComponent.<AIAgentTryNav>();
 	}
-}
 
-function OnTriggerExit (other : Collider) {
-	if(other.gameObject.tag == "Enemy" && enemyTriggerColliderList.IndexOf(other.gameObject) != -1) {
-			Debug.Log("Enemy has exited trigger");
-			//enemyTriggerColliderList.IndexOf(other.gameObject);
-			enemyTriggerColliderList.Remove(other.gameObject);
-			listSize--;
-			if(navigationAgentEnables == false && listSize == 0) {
-				gameObject.GetComponent.<AIAgentTryNav>().enabled = true;
-				navigationAgentEnables = true;
-			}
+	function OnTriggerEnter (otherObject : Collider) {
+		if(otherObject.gameObject.tag == "Enemy" && canSeeEnemy(otherObject) == true) {
+				enemyTriggerColliderList.Add(otherObject.gameObject);
+				listSize++;
+				Debug.Log("Enemy has entered trigger " + otherObject.gameObject.name + "   " + otherObject.gameObject.GetInstanceID());
+				stopNavAgent();
+		}
 	}
-}
+	
+	function OnTriggerExit (otherObject : Collider) {
+		if(otherObject.gameObject.tag == "Enemy" && enemyTriggerColliderList.IndexOf(otherObject.gameObject) != -1) {
+				Debug.Log("Enemy has exited trigger");
+				enemyTriggerColliderList.Remove(otherObject.gameObject);
+				listSize--;
+				if(navigationAgentEnables == false && listSize == 0) {
+					resumeNavAgent();
+				}
+		}
+	}
 
-function Update() {
-	//var numberOfChanged : int = 0;
-	//if(enemyTriggered != null) 
-		//Debug.Log(Time.realtimeSinceStartup + "listSize = " + listSize);
-	//if(navigationAgentEnables == false) {
-		if(listSize == 0) {
-			navigationAgentEnables = true;
-			gameObject.GetComponent.<AIAgentTryNav>().enabled = true;
-		} else {
-			for(var count : int = 0; count < listSize; count++) {
-				if(enemyTriggerColliderList.Item[count] == null) {
-					enemyTriggerColliderList.RemoveAt(count);
-					listSize--;
-					count--;
+	function Update() {
+		super.Update();
+		if(navigationAgentEnables == false) {
+			if(listSize == 0) {
+				resumeNavAgent();
+			} else {
+				for(var count : int = 0; count < listSize; count++) {
+					if(enemyTriggerColliderList.Item[count] == null) {
+						enemyTriggerColliderList.RemoveAt(count);
+						listSize--;
+						count--;
+					}
 				}
 			}
 		}
-	//}
-}
-
-public function canSeeEnemy(enemyToCheck : Collider) {
-	var enemyDirection : Vector3 = (enemyToCheck.transform.position - transform.position);
-	var hit : RaycastHit;
-	Physics.Raycast (transform.position, enemyDirection, hit, enemyDirection.magnitude);
-	if (hit.collider && hit.collider.transform == enemyToCheck.transform) {
-		return true;
 	}
-	return false;
+
+	public function canSeeEnemy(enemyToCheck : Collider) {
+		var enemyDirection : Vector3 = (enemyToCheck.transform.position - transform.position);
+		var hit : RaycastHit;
+		Physics.Raycast (transform.position, enemyDirection, hit, enemyDirection.magnitude);
+		if (hit.collider && hit.collider.transform == enemyToCheck.transform) {
+			return true;
+		}
+		return false;
+	}
+	
+	public function getListSize() : int {
+		return listSize;
+	}
+	
+	public function stopNavAgent() {
+		if(navMeshAgent) {
+			navMeshAgent.stop();
+			navigationAgentEnables = false;
+		}
+	}
+	
+	public function resumeNavAgent() {
+		if(navMeshAgent) {
+			navMeshAgent.resume();
+			navigationAgentEnables = true;	
+		}
+	}
+	
+	public function getFirstTarget() : Transform {
+		if(listSize == 0)
+			return null;
+		for(var count: int = 0; count < listSize; count++)
+			if(enemyTriggerColliderList.Item[count] != null)
+				return enemyTriggerColliderList.Item[count].transform;
+		
+	}
+	
 }

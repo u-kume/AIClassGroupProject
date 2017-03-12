@@ -1,11 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AI/AI.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AIAgent/AIAgentMovement.js">
     <Files>
-      <File FileName="Assets/Scripts/AIAgent/AgentCollider.js" Line="10" Column="40" />
-      <File FileName="Assets/Scripts/AI/MechAttackMoveController.js" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/AI/AI.js" Line="62" Column="2" />
-      <File FileName="Assets/Scripts/AI/PatrolMoveController.js" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIAgent/AIAgentMovementController.js" Line="45" Column="3" />
+      <File FileName="Assets/Scripts/Movement/PlayerMoveController.js" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Movement/FreeMovementMotor.js" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIAgent/AIAgentMovement.js" Line="118" Column="57" />
+      <File FileName="Assets/Scripts/AIAgent/AIAgentMovementMotor.js" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Movement/MovementMotor.js" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/AIAgent/AgentCollider.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -30,8 +30,8 @@ private var joystickRight : Joystick;
 
 private var mainCameraTransform : Transform;
 private var cameraVelocity : Vector3 = Vector3.zero;
-private var cameraOffset : Vector3 = Vector3.zero;
-private var initOffsetToPlayer : Vector3;
+public var cameraOffset : Vector3 = Vector3.zero;
+public var initOffsetToPlayer : Vector3;
 
 // Prepare a cursor point varibale. This is the mouse position on PC and controlled by the thumbstick on mobiles.
 private var cursorScreenPosition : Vector3;
