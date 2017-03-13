@@ -142,8 +142,8 @@ public class AIAgentMovement extends AIAgent{
 		posRel.x /= maxHalf;
 		posRel.y /= maxHalf;
 
-		cameraAdjustmentVector = posRel.x * screenMovementRight + posRel.y * screenMovementForward;
-		cameraAdjustmentVector.y = 0.0;
+		//cameraAdjustmentVector = posRel.x * screenMovementRight + posRel.y * screenMovementForward;
+		//cameraAdjustmentVector.y = 0.0;
 
 		// The facing direction is the direction from the character to the cursor world position
 		motor.facingDirection = (cursorWorldPosition - agentTransform.position);
