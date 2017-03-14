@@ -120,7 +120,7 @@ public class AIAgentMovement extends AIAgent{
 
 		#else
 
-		var tempTransform = agentCollider.getFirstTarget();
+		var tempTransform = agentCollider.currentTopOfList;
 		var cursorScreenPosition : Vector3;
 		if(tempTransform == null)
 			cursorScreenPosition = Vector3 (0.5 * Screen.width, 0.5 * Screen.height, 0);

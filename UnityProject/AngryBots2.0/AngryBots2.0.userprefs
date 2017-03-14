@@ -1,9 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/AIAgent/AIAgentMovement.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Modules/TriggerOnMouseOrJoystick.js">
     <Files>
-      <File FileName="Assets/Scripts/AIAgent/AgentCollider.js" Line="117" Column="20" />
-      <File FileName="Assets/Scripts/AIAgent/AIAgentMovement.js" Line="146" Column="5" />
+      <File FileName="Assets/Scripts/AI/MechAttackMoveController.js" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Modules/TriggerOnMouseOrJoystick.js" Line="62" Column="3" />
+      <File FileName="Assets/Scripts/Modules/SignalSender.js" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Weapons/AutoFire.js" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Animation/PlayerAnimation.js" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Misc/EndOfLevel.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

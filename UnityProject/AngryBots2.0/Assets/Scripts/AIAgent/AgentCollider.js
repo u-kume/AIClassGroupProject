@@ -19,12 +19,15 @@ public class AgentCollider extends AIAgent{
 
 	//a class object for the class that deals with the navigationMeshAgent
 	public var navMeshAgent : AIAgentTryNav;
+	public var firingScript : TriggerOnMouseOrJoystick;
+	public var currentTopOfList : Transform = null;
 
 
 	//This is the first function that is called when the game starts and this object is awoken.
 	//	This sets the initial variables that need to be initialized
 	function Awake() {
 		navMeshAgent = gameObject.GetComponent.<AIAgentTryNav>();
+		//firingScript = gameObject.GetComponent.<TriggerOnMouseOrJoystick>();
 	}
 
 
@@ -34,7 +37,7 @@ public class AgentCollider extends AIAgent{
 		if(otherObject.gameObject.tag == "Enemy" && canSeeEnemy(otherObject) == true) {
 				enemyTriggerColliderList.Add(otherObject.gameObject);
 				listSize++;
-				Debug.Log("Enemy has entered trigger " + otherObject.gameObject.name + "   " + otherObject.gameObject.GetInstanceID());
+				Debug.Log("Enemy has entered trigger " + otherObject.gameObject.name + "   " + otherObject.gameObject.GetInstanceID() + "       " +otherObject.GetType());
 				stopNavAgent();
 		}
 	}
@@ -52,6 +55,16 @@ public class AgentCollider extends AIAgent{
 				}
 		}
 	}
+	
+	
+	function OnTriggerStay(otherObject : Collider) {
+		if(otherObject.gameObject.tag == "Enemy" && canSeeEnemy(otherObject) == true && enemyTriggerColliderList.IndexOf(otherObject.gameObject) == -1) {
+			Debug.Log("Found new enemy that has stayed in collider " + otherObject.gameObject.GetInstanceID());
+			enemyTriggerColliderList.Add(otherObject.gameObject);
+			listSize++;
+			stopNavAgent();
+		}
+	}
 
 
 	//This function is called once every frame and is used to do reoccuring logic
@@ -59,9 +72,16 @@ public class AgentCollider extends AIAgent{
 	//	This function will also check to see if an enemy was destroyed and if so it will be removed from the List.
 	function Update() {
 		super.Update();
+		if(listSize > 0) {
+			if(enemyTriggerColliderList.Item[0] != null)
+				currentTopOfList = enemyTriggerColliderList.Item[0].transform;
+				firingScript.aiAgentStartFiring();
+		}
 		if(navigationAgentEnables == false) {
 			if(listSize == 0) {
+				currentTopOfList = null;
 				resumeNavAgent();
+				firingScript.aiAgentStopFiring();
 			} else {
 				for(var count : int = 0; count < listSize; count++) {
 					if(enemyTriggerColliderList.Item[count] == null) {

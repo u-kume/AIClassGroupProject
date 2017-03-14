@@ -8,7 +8,8 @@ public var endSceneName : String = "3-4_Pain";
 
 
 function OnTriggerEnter (other : Collider) {
-	if (other.tag == "Player") {
+	
+	if (other.tag == "Player" && other.GetType() == UnityEngine.CapsuleCollider) {
 		
 		FadeOutAudio ();	
 		
